@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import ModeToggle from "@/components/ui/mode-toggle";
 
-export default function SpeechToText() {
+export default function speechToText() {
   const [finalText, setFinalText] = useState(""); // Stores finalized transcript
   const [interimText, setInterimText] = useState(""); // keeps the inbetween words so we can dynamically show in UI.
   const [isListening, setIsListening] = useState(false);// pretty selfexplanatory.
@@ -63,20 +65,19 @@ export default function SpeechToText() {
         <span className="text-gray-500">{interimText}</span> {/* Inbetween text in grey to imitate processing lmao*/}
       </div>
       <div className="mt-4 flex gap-4">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+        <Button 
           onClick={startListening}
           disabled={isListening}
         >
           Start
-        </button>
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded-lg"
+        </Button>
+        <Button variant='destructive'
           onClick={stopListening}
           disabled={!isListening}
         >
           Stop
-        </button>
+        </Button>
+        <ModeToggle></ModeToggle>
       </div>
     </div>
   );
