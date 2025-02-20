@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import ModeToggle from "@/components/ui/mode-toggle";
 import ToDoList from "@/components/ToDoList";
 import Summary from "@/components/Summary";
@@ -78,7 +77,7 @@ export default function SpeechToText() {
       const response = await axios.post("http://localhost:5000/extract-actions", { text });
       setTasks(response.data.tasks);
       setEvents(response.data.events);
-      setNotes(response.data.notes);
+      // setNotes(response.data.notes);
     } catch (error) {
       console.error("Backend exploded while processing transcript:", error);
     } finally {
@@ -92,26 +91,23 @@ export default function SpeechToText() {
 
       <Card className="w-full max-w-lg">
         <CardContent className="p-4">
-          {loading ? (
-            <Skeleton className="h-6 w-full mb-2" /> // Placeholder because AI is "thinking"
-          ) : (
             <>
               <span>{finalText}</span>
               <span className="text-gray-500">{interimText}</span> {/* Because we love a good unfinished thought */}
             </>
-          )}
+
         </CardContent>
       </Card>
 
       <div className="mt-4 flex gap-4">
         <Button onClick={startListening} disabled={isListening}>Start</Button>
-        <Button variant="destructive" onClick={stopListening} disabled={!isListening}>Stop</Button>
+        <Button variant="destructive" onClick={stopListening} disabled={!isListening}>Process</Button>
         <ModeToggle />
       </div>
 
       {/* Here’s the part where we pretend like this does something productive */}
-      <ToDoList tasks={tasks} />
-      <Summary notes={notes} events={events} />
+      <ToDoList tasks={tasks} isLoading={loading} />
+      <Summary  events={events} isLoading={loading} />
     </div>
   );
 }

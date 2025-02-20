@@ -21,7 +21,7 @@ You are an AI that extracts structured information. Given a conversation, return
 {
   "tasks": ["Task 1", "Task 2"],
   "events": [{ "title": "Event Name", "date": "YYYY-MM-DD", "time": "HH:MM AM/PM" }],
-  "notes": "Summary of the conversation"
+  "notes": "summarize the conversation"
 }
 
 Conversation:
@@ -31,11 +31,10 @@ Do not include any extra text—just return valid JSON.
 `;
 
         const result = await model.generateContent(prompt);
-        console.log(result)
-        const responseText = result.response.candidates[0].content.parts[0].text;
-        console.log(responseText); // Because debugging is basically staring at logs until something makes sense
-
-        const extractedData = JSON.parse(responseText); // Hope this doesn’t explode
+        console.log(result); // Log the entire result for debugging
+        const responseText = result.response.candidates[0].content.parts[0].text; // Adjust based on actual response structure
+        console.log(responseText); // Debugging
+        const extractedData = JSON.parse(cleanJson); // Hope this doesn’t explode
         res.json(extractedData);
     } catch (error) {
         console.error("AI had a mental breakdown:", error);
