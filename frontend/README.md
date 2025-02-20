@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Frontend - Obvioustant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend, where we make things pretty and pretend the backend doesn't exist.
 
-Currently, two official plugins are available:
+## Stack
+- **React + Vite** – Because waiting for Webpack to bundle is for chumps.
+- **TailwindCSS** – Writing normal CSS is suffering.
+- **ShadCN** – Because UI should be easy.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup & Running
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Install dependencies
+```
+cd frontend
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 2. Start the dev server
 ```
+npm run dev
+```
+
+If everything worked, open `http://localhost:5173` and bask in the glory of your own voice turning into text.
+
+## Features
+- Speech-to-text transcription that may or may not understand you.
+- Auto-extracts tasks, events, and notes from your nonsense.
+- Dark mode, because obviously.
+
+## Issues & Fixes
+- **Speech recognition isn’t working** – Are you on Chrome? No? There’s your problem.
+- **Nothing appears on screen** – Did you run the backend? Didn’t think so.
+- **Everything is ugly** – Tailwind is your friend. Embrace it.
+
+## Notes
+- This frontend is useless without the backend. Don’t forget to start that too.
+- The UI might look decent, but deep down, it's all just divs and vibes.
+- If you break something, blame JavaScript.
+
+Good luck, and may your console stay error-free!
+
