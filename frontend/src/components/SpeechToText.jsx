@@ -77,7 +77,7 @@ export default function SpeechToText() {
       const response = await axios.post("http://localhost:5000/extract-actions", { text });
       setTasks(response.data.tasks);
       setEvents(response.data.events);
-      // setNotes(response.data.notes);
+      setNotes(response.data.notes);
     } catch (error) {
       console.error("Backend exploded while processing transcript:", error);
     } finally {
