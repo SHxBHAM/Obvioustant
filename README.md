@@ -14,7 +14,7 @@ Welcome to **Obvioustant**—because typing is too much effort and talking to yo
 - **Speech Recognition**: Browser’s built-in Web Speech API
 - **Data Handling**: Axios for fetching, because fetch() is too vanilla
 - 
-  ## Things still left to be implemented
+## Things still left to be implemented
 - Need to implement directly adding events to google calendar (studied about it, need to setup OAuth and figure a way to send the data to google's API)
 - ability to directly upload audio to the backend so it can be transcribed more accurately (maybe use google's STT or Whisper by Open AI), also enables us to directly upload audio file (probably would need to encode it to a suitable format to ship) 
 
