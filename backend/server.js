@@ -34,7 +34,7 @@ Do not include any extra text—just return valid JSON.
         console.log(result); // Log the entire result for debugging
         const responseText = result.response.candidates[0].content.parts[0].text; // Adjust based on actual response structure
         console.log(responseText); // Debugging
-        const extractedData = JSON.parse(cleanJson); // Hope this doesn’t explode
+        const extractedData = JSON.parse(responseText); // Hope this doesn’t explode
         res.json(extractedData);
     } catch (error) {
         console.error("AI had a mental breakdown:", error);
