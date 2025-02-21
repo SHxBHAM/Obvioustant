@@ -13,6 +13,10 @@ Welcome to **Obvioustant**—because typing is too much effort and talking to yo
 - **Backend**: Express.js + Google Gemini API (because we trust AI, right?)
 - **Speech Recognition**: Browser’s built-in Web Speech API
 - **Data Handling**: Axios for fetching, because fetch() is too vanilla
+- 
+  ## Things still left to be implemented
+- Need to implement directly adding events to google calendar (studied about it, need to setup OAuth and figure a way to send the data to google's API)
+- ability to directly upload audio to the backend so it can be transcribed more accurately (maybe use google's STT or Whisper by Open AI), also enables us to directly upload audio file (probably would need to encode it to a suitable format to ship) 
 
 ## Setup & Installation
 
@@ -48,6 +52,7 @@ Open `http://localhost:5173` (or whatever Vite decides) and start mumbling. The 
 - You need a **Google Gemini API key** (`GEMINI_API_KEY` in `.env`). Get one [here](https://ai.google.dev/) if you don’t have it.
 - Speech recognition may not work well if you mumble, whisper, or speak like a robot.
 - This will not replace a real assistant. Sorry.
+  
 
 ---
 
