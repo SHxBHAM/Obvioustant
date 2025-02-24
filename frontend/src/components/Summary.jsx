@@ -7,7 +7,7 @@ export default function Summary({ notes,events = [], isLoading }) {
       <CardContent className="p-4">
         <section aria-labelledby="summary-heading">
           <h2 id="summary-heading" className="text-lg font-semibold mb-2">
-            Meeting Summary
+            Meeting Summary/events
           </h2>
 
           {isLoading ? (

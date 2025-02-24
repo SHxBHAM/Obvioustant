@@ -107,7 +107,7 @@ export default function SpeechToText() {
 
       {/* Here’s the part where we pretend like this does something productive */}
       <ToDoList tasks={tasks} isLoading={loading} />
-      <Summary  events={events} isLoading={loading} />
+      <Summary  events={events} notes={notes} isLoading={loading} />
     </div>
   );
 }
