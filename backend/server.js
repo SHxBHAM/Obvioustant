@@ -13,7 +13,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.post("/extract-actions", async (req, res) => {
     try {
         const { text } = req.body;
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        // Update model name as needed; verify available models with listModels()
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
         // AI, please translate human nonsense into something structured
         const prompt = `
@@ -30,11 +31,29 @@ Conversation:
 Do not include any extra text—just return valid JSON.
 `;
 
-        const result = await model.generateContent(prompt);
+        const result = await model.generateContent({
+            contents: [{
+                role: "user",
+                parts: [{ text: prompt }]
+            }]
+        });
         console.log(result); // Log the entire result for debugging
-        const responseText = result.response.candidates[0].content.parts[0].text; // Adjust based on actual response structure
-        console.log(responseText); // Debugging
-        const extractedData = JSON.parse(responseText); // Hope this doesn’t explode
+
+        // Extract the response text; adjust if the structure changes
+        const responseText = result.response.candidates[0].content.parts[0].text;
+        console.log("Raw response:", responseText);
+
+        // Remove Markdown formatting if present (e.g., "```json ... ```")
+        const jsonStart = responseText.indexOf("{");
+        const jsonEnd = responseText.lastIndexOf("}");
+        if (jsonStart === -1 || jsonEnd === -1) {
+            throw new Error("Could not locate JSON in the AI response.");
+        }
+        const cleanedResponse = responseText.slice(jsonStart, jsonEnd + 1);
+        console.log("Cleaned JSON:", cleanedResponse);
+
+        // Parse the cleaned JSON
+        const extractedData = JSON.parse(cleanedResponse);
         res.json(extractedData);
     } catch (error) {
         console.error("AI had a mental breakdown:", error);
